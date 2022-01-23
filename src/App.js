@@ -1,19 +1,9 @@
-import { Records } from "./components/records";
+import { Game } from "./components/game";
 
 function App() {
   return (
     <div className="App">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100vw",
-          gap: 20,
-          flexWrap: "wrap",
-        }}
-      >
-        <Records />
-      </div>
+      <Game />
     </div>
   );
 }

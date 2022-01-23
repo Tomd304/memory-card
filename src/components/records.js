@@ -1,6 +1,6 @@
 import { albums } from "../album-arts/albums";
 import { useState } from "react";
-const Records = () => {
+const Records = (props) => {
   const [albumList, setAlbumList] = useState(
     albums.sort(() => Math.random() - 0.5)
   );
@@ -8,9 +8,22 @@ const Records = () => {
   const clickImg = (event) => {
     const index = event.target.dataset.index;
     if (!albumList[index].clicked) {
+      props.winPoint();
       setClicked(index);
+      shuffleAlbums();
     } else {
+      props.loseGame();
+      resetAlbums();
     }
+  };
+
+  const shuffleAlbums = () => {
+    setAlbumList([...albumList].sort(() => Math.random() - 0.5));
+  };
+
+  const resetAlbums = () => {
+    const tempArr = albumList.map((x) => ({ ...x, clicked: false }));
+    setAlbumList(tempArr.sort(() => Math.random() - 0.5));
   };
 
   const setClicked = (index) => {
@@ -31,7 +44,17 @@ const Records = () => {
     );
   };
   return (
-    <div>{albumList.map((album, index) => createRecordItem(album, index))}</div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        width: "1000px",
+        gap: 20,
+        flexWrap: "wrap",
+      }}
+    >
+      {albumList.map((album, index) => createRecordItem(album, index))}
+    </div>
   );
 };
 
