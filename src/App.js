@@ -1,4 +1,4 @@
-import { Record } from "./components/record";
+import { Records } from "./components/records";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
           flexWrap: "wrap",
         }}
       >
-        <Record />
+        <Records />
       </div>
     </div>
   );
